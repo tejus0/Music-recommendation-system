@@ -1,19 +1,23 @@
 from tkinter import ttk
-
+import pyautogui
+import os
+import time
 from PIL import Image, ImageTk
-from PIL.ImageTk import PhotoImage
+# from ImageTk import PhotoImage
 from sklearn.metrics import silhouette_score
 import config
 import spotipy
 import pandas as pd
 from spotipy.oauth2 import SpotifyClientCredentials
-
 from emotion_video_classifier import emotion_testing
 import tkinter as tk
 from tkinter import messagebox
 
-client_credentials_manager = SpotifyClientCredentials(client_id=config.cid, client_secret=config.secret)
-sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+client_credentials_manager = SpotifyClientCredentials(client_id="db4ec5d47f1c4111ba1ea76ef689f2c8", client_secret="22dddf03189e4d2b8173fe1bf19c0d5a")
+sp = spotipy.Spotify( client_credentials_manager=client_credentials_manager)
+
+emotion_word =emotion_testing()
+print(emotion_word)
 
 root = tk.Tk()
 root.title('CREDENTIALS')
@@ -21,7 +25,7 @@ root.geometry("600x400")
 root.configure(bg='black')
 name1 = tk.StringVar()
 
-photo = PhotoImage(file="musicback.jpg")
+photo = ImageTk.PhotoImage(file="images\musicback.jpg")
 l = tk.Label(root, image=photo)
 l.image = photo  # just keeping a reference
 l.grid()
@@ -199,7 +203,24 @@ def get_results(emotion_code):
         sad_set.append(df1[df1['kmeans'] == 1]['name'].head(NUM_RECOMMEND))
         return pd.DataFrame(sad_set).T
 
+def playsongs():
+    pyautogui.press('win')
+    time.sleep(3)
+    pyautogui.write('spotify')
+    time.sleep(1)
+    pyautogui.press('enter')
 
+    time.sleep(9)
+
+    #for song in list(row):
+    pyautogui.hotkey('ctrl','l')
+    time.sleep(3)
+    pyautogui.write(f"{list(row)[0]}", interval=0.2)
+
+    for key in ['enter', 'pagedown','tab','enter','enter']:
+        time.sleep(2)
+        pyautogui.press(key)
+        
 def final():
     root1 = tk.Tk()
     root1.title("Your Playlist")
@@ -213,10 +234,17 @@ def final():
     for k in cols:
         tree.column(k, anchor="w")
         tree.heading(k, text=k, anchor='w')
-
+    global row
     for index, row in df.iterrows():
+
+        print(list(row))
         tree.insert("", 0, text=index, values=list(row))
 
+    pred = tk.Button(root1, text="Play",command=playsongs,
+                 fg="white", bg="black",
+                 width=20, height=3, activebackground="Red",
+                 font=('times', 15, ' bold '))
+    pred.place(x=200, y=500)
     root1.mainloop()
     if emotion_word == 'sad':
         print('emotion detected is SAD')
@@ -224,7 +252,8 @@ def final():
         print('emotion detected is HAPPY')
 
 
-emotion_word = (emotion_testing())
+# emotion_word=
+# print(pred)
 if emotion_word == 'sad':
     emotion_code = 0
 else:
@@ -253,8 +282,8 @@ quitWindow = tk.Button(window, text="Quit",
                        font=('times', 15, ' bold '))
 quitWindow.place(x=1100, y=500)
 
-image1 = Image.open("musicimg (1).jpg")
-test = ImageTk.PhotoImage(image1)
+
+test = ImageTk.PhotoImage(file="images\musicimg(1).jpg")
 
 label1 = tk.Label(image=test)
 label1.image = test
