@@ -4,9 +4,9 @@ import cv2
 from keras.preprocessing import image
 from keras.utils import img_to_array
 
-detection_model_path = 'C:/Users/acer/Documents/college/Music Player/try2/Music-recommendation-system/haarcascade_files/haarcascade_frontalface_default.xml'
+detection_model_path = 'C:/Users/acer/Documents/college/Music Player/Music-recommendation-system/haarcascade_files/haarcascade_frontalface_default.xml'
 # print(cv2.CascadeClassifier.empty)
-emotion_model_path = 'C:/Users/acer/Documents/college/Music Player/try2/Music-recommendation-system/final_model.h5'
+emotion_model_path = 'C:/Users/acer/Documents/college/Music Player/Music-recommendation-system/final_model.h5'
 # print(cv2.CascadeClassifier.load('haarcascade_files/haarcascade_frontalface_default.xml'))
 face_detection = cv2.CascadeClassifier(detection_model_path)
 emotion_classifier = load_model(emotion_model_path, compile=False)

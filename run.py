@@ -13,7 +13,7 @@ from emotion_video_classifier import emotion_testing
 import tkinter as tk
 from tkinter import messagebox
 
-client_credentials_manager = SpotifyClientCredentials(client_id="db4ec5d47f1c4111ba1ea76ef689f2c8", client_secret="22dddf03189e4d2b8173fe1bf19c0d5a")
+client_credentials_manager = SpotifyClientCredentials(client_id="1f5e368c8443496c97b2430a60ad4da8", client_secret="232727c5a15b400fa86f50bc7593b1f8")
 sp = spotipy.Spotify( client_credentials_manager=client_credentials_manager)
 
 emotion_word =emotion_testing()
@@ -168,7 +168,7 @@ length = len(dic_df['album'])
 data = pd.DataFrame.from_dict(dic_df)
 data.drop_duplicates(inplace=True, subset=['name'])
 name = data['name']
-df = pd.read_csv('Spotify Dataset Analysis/data.csv.zip', compression='zip')
+df = pd.read_csv('Spotify_Dataset_Analysis/data_csv.zip', compression='zip')
 df.drop_duplicates(inplace=True, subset=['name'])
 name = df['name']
 data1 = data.append(df)
@@ -212,20 +212,26 @@ def playsongs():
 
     time.sleep(9)
 
-    #for song in list(row):
-    pyautogui.hotkey('ctrl','l')
-    time.sleep(3)
-    pyautogui.write(f"{list(row)[0]}", interval=0.2)
+    print(type(row))
+    len(list(row))
+    for idx,val in df.iterrows():
+        print(val,idx)
+        pyautogui.hotkey('ctrl','l')
+        time.sleep(1)
+        pyautogui.write(f"{list(val)[0]}", interval=0.2)
 
-    for key in ['enter', 'pagedown','tab','enter','enter']:
+        for key in ['enter', 'pagedown','tab','enter','enter']:
+            time.sleep(2)
+            pyautogui.press(key)
+        
         time.sleep(2)
-        pyautogui.press(key)
         
 def final():
     root1 = tk.Tk()
     root1.title("Your Playlist")
     root1.configure(bg='black')
 
+    global df
     df = get_results(emotion_code)
     cols = list(df.columns)
     tree = ttk.Treeview(root1)
