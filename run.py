@@ -5,15 +5,19 @@ import time
 from PIL import Image, ImageTk
 # from ImageTk import PhotoImage
 from sklearn.metrics import silhouette_score
-import config
+from dotenv import load_dotenv
+import os
 import spotipy
 import pandas as pd
 from spotipy.oauth2 import SpotifyClientCredentials
 from emotion_video_classifier import emotion_testing
 import tkinter as tk
 from tkinter import messagebox
+load_dotenv()
 
-client_credentials_manager = SpotifyClientCredentials(client_id="1f5e368c8443496c97b2430a60ad4da8", client_secret="232727c5a15b400fa86f50bc7593b1f8")
+api_key =os.getenv("CLIENT_ID")
+api_secret= os.getenv("CLIENT_SECRET")
+client_credentials_manager = SpotifyClientCredentials(client_id=api_key, client_secret=api_secret)
 sp = spotipy.Spotify( client_credentials_manager=client_credentials_manager)
 
 emotion_word =emotion_testing()
