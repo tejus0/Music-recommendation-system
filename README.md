@@ -1,58 +1,47 @@
-# Emotion based Music Recommender System With Selenium Automation.
+**README File for Emotion-based Music Recommender System with Selenium Automation**
 
-![Spotify](https://img.shields.io/badge/Spotify-1ED760?&style=for-the-badge&logo=spotify&logoColor=white)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+**Abstract**
 
-## 💥Contributors :
+This project proposes a novel approach to song recommendation based on the user's emotional state, detected through facial expression analysis using Computer Vision and Machine Learning techniques. The system recommends songs that match the user's current mood, with a unique twist of recommending uplifting songs when the user is sad and relaxing songs when they are happy.
 
-   * Shreyas.P.J , github: shreyaspj20
+**Description**
 
-   * Utsav Pati ,github: Utsavpati
- 
-# 💥ABSTRACT :
+The system consists of three main components:
 
-* Song recommendations have existed for a long time, but in majority of the scenarios the recommendation is determined after learning the user preferences over a period of time, like looking at his past song preferences, time he listens to the music etc. 
-* In this paper we propose a new approach to song recommendation, where in the mood of a person is determined from his picture and based on the mood predicted song recommendations are made that best suit the mood predicted.
+Emotion Detection: The user's facial expression is captured using OpenCV and analyzed using a Convolutional Neural Network (CNN) and Deep Neural Network (DNN) to predict their current mood (Happy or Sad).
+Song Clustering: Unsupervised Machine Learning techniques (K-means algorithm) are used to cluster songs into two categories: 'VERY ENTERTAINING' (class 0) and 'RELAXED' (class 1) based on features like acousticness, energy, loudness, and danceability.
+Song Recommendation: The recommended songs are displayed to the user, with an option to play them automatically using Selenium automation.
+Data
 
-# 💥DESCRIPTION :
+The dataset used in this project is from Kaggle's Spotify dataset (1921-2020, 160k tracks), which contains features like acousticness, energy, loudness, and danceability.
 
+**Libraries Used**
 
-* We first process the image of the user taken as an input with the help of a python library for Computer Vision called 'OpenCV'. This captured image is then made available for the CNN in combination with DNN to make a prediction whether the current mood of the user is 'Happy' or 'Sad'.
-* The second part is the usage of Unsupervised Machine Learning techniques for clustering songs.The songs are clustered as either of the two classes-'VERY ENTERTAINING'(class 0) and 'RELAXED'(class 1) using the popular K-means algorithm. Then the recommendation is made in order of the current popularity of the respective songs.
-* We have an unique story in the way we recommend the songs for each mood, for example when other sites recommend sad songs when a person is sad or feeling bad, we recommend users with songs which will cheer them up('VERY ENTERTAINING') and 'RELAXING' songs when they are 'HAPPY'.
-* The code to train the neural network can be found in the 'Emotion_detector_version2' iPython notebook. If anyone wants to modify the network to suit their particular needs or feel it is necessary to tweak the network they can do so by making changes to the code present there. The model created is saved as 'final_model.h5'
+OpenCV
+TensorFlow and Keras
+Scikit-learn
+LightGBM
+Spotipy
+Tkinter
+Pillow
+PyAutoGUI (for Selenium automation).
 
+**How to Use**
 
-# 💥DATA :
- 
- * The data we have used here is from https://www.kaggle.com/yamaerenay/spotify-dataset-19212020-160k-tracks.
- * The file contains more than 160,000 songs collected from Spotify Web API, and also you can find data grouped by artist, year, or genre in the data section.
- * It has features like acousticness, energy, loudness and danceability which make the clustering algorithm work more effectively.
- 
- 
-# 💥LIBRARIES USED :
-  * OpenCV.
-  * Tensorflow and Keras.
-  * Sklearn.
-  * LightGBM.
-  * Spotipy.
-  * Tkinter.
-  * Pillow.
+Execute the run.py file to open a GUI asking for the user's artist name.
+The system will collect required albums from the API and open the user's webcam.
+Click the 'q' button to stop capturing the image, and the GUI will lead you through.
+Click the 'Print' button to generate song recommendations based on the user's mood.
+Enjoy the music!
 
+**Selenium Automation**
 
-![](final.gif)
+After the song recommendations are generated, the system uses Selenium automation to open Spotify and play the recommended songs in a loop.
 
-Alternatively, click on the link below to the video.
+**Modules Used in Automation**
 
-https://youtu.be/F21sr08tg98
+PyAutoGUI
+Tkinter
+Time
 
-# 💥HOW TO USE :
-
-   * This application can be used by executing the run.py file which then opens up a GUI asking the user to enter the name of the artist.
-   * This will then collect required albums from the API and then will open up your WebCam .
-   * Just click 'q' button on the keyboard to stop capturing the image and the GUI will lead you through. 
-   * Clicking on print button will make the recommendations ready for you. 
-   * Enjoy the ride😊😊
-
-
-
+Note: This project requires a Spotify account and the Spotipy library to access the Spotify API. Additionally, the Selenium automation code may require adjustments based on the user's system configuration.
