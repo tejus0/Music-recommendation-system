@@ -4,7 +4,11 @@
 
 This project proposes a novel approach to song recommendation based on the user's emotional state, detected through facial expression analysis using Computer Vision and Machine Learning techniques. The system recommends songs that match the user's current mood, with a unique twist of recommending uplifting songs when the user is sad and relaxing songs when they are happy.
 
-**Video of the Project **
+**Video of the Project**
+
+
+https://github.com/tejus0/Music-recommendation-system/assets/76488943/e2f9c8ab-1a65-45b7-9273-4bbe3095072a
+
 
 
 **Description**
