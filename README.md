@@ -4,6 +4,9 @@
 
 This project proposes a novel approach to song recommendation based on the user's emotional state, detected through facial expression analysis using Computer Vision and Machine Learning techniques. The system recommends songs that match the user's current mood, with a unique twist of recommending uplifting songs when the user is sad and relaxing songs when they are happy.
 
+**Video of the Project **
+
+
 **Description**
 
 The system consists of three main components:
